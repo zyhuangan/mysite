@@ -1,0 +1,174 @@
+{% load i18n admin_urls admin_static admin_list %}
+{% load paginate_tags %}
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>show_check_partition | Django vivo</title>
+<link rel="stylesheet" type="text/css" href="/static/partition_state/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/partition_state/css/changelists.css">
+
+<script type="text/javascript" src="/static/partition_state/css/core.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.init.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/actions.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/urlify.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/prepopulate.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/xregexp.min.js"></script>
+
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-partition_state model-t_apk_system_config change-list" data-admin-utc-offset="28800">
+
+<!-- Container -->
+<div id="container">
+   
+<!-- Header -->
+<div id="header">
+    <div id="branding">       
+        <h1 id="site-name"><a href="http://192.168.2.63:8099/admin/">Django administration</a></h1>
+    </div>
+    <div id="user-tools">
+    Welcome,<strong>compiler</strong>.<a href="http://192.168.2.63:8099/">View site</a> /
+    <a href="http://192.168.2.63:8099/admin/password_change/">Change password</a> /
+    <a href="http://192.168.2.63:8099/admin/logout/">Log out</a>
+    </div>
+</div>
+<!-- END Header -->
+    
+<div class="breadcrumbs">
+    <a href="{% url 'partition_state:index' %}">Home</a>
+    › <a href="{% url 'partition_state:index' %}">Partition_State</a>
+    › T_apk_system_configs
+</div>
+
+<!-- Content -->
+<div id="content" class="flex">
+    <h1>show_check_partition</h1>
+<div id="content-main">
+    
+<ul class="object-tools">
+<li>
+<a href="{% url 'partition_state:get_all_partition' %}" class="download_all_partition">
+<!--<a href="{% url 'partition_state:check_partition' project_name='PD1515BA' %}" >-->
+DOWNLOAD
+</a>
+</li>
+</ul>
+      
+<div class="module filtered" id="changelist">
+    <div id="toolbar"><form id="changelist-search" method="get">
+        <div><!-- DIV needed for valid HTML -->
+        <label for="searchbar"><img src="/static/partition_state/img/search.svg" alt="Search"></label>
+        <input type="text" size="40" name="p" value="" id="searchbar">
+        <input type="submit" value="Search">
+        </div>
+    </form></div>
+
+<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+    <div id="changelist-filter">
+    <h2>Filter</h2>
+    <h3> By project </h3>
+    <ul>
+    <li class="selected">
+    <a href="{% url 'partition_state:show_check_partition'%}">All</a></li>
+
+	{% for project_name in project_names_list %}
+    <li>
+    <a href="{% url 'partition_state:get_check_partition' project_name %}">{{ project_name }}</a>
+    </li>
+	{% endfor %}
+    
+    </ul>
+    </div>
+        
+    <form id="changelist-form" method="post" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="2FDWekqo1AF2iemKewfVH34C7ryP058M">
+          
+
+
+          
+
+
+<div class="results">
+    <table id="result_list">
+    <thead>
+    <tr>
+    <th scope="col" class="action-checkbox-column">
+        <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-project">
+        <div class="text"><a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?o=1">Project</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-version">
+        <div class="text"><a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?o=2">Version</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-systemsize">
+        <div class="text"><a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?o=3">Systemsize</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-fixedsize">
+        <div class="text"><a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?o=4">Fixedsize</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-surplussize">
+        <div class="text"><a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?o=5">Surplussize</a></div>
+        <div class="clear"></div>
+    </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% paginate system_list 50 %}
+{% for system in system_list %}
+<tr class="{% cycle 'row1' 'row2' %}">
+	<td class="action-checkbox">
+		<input class="action-select" name="_selected_action" type="checkbox" value="{{system.id}}">
+	</td>
+	<th class="field-project">
+		<a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/{{system.id}}/change/">{{system.project}}</a>
+	</th>
+	<td class="field-version">{{system.version}}</td>
+	<td class="field-systemsize">{{system.systemsize}}</td>
+	<td class="field-fixedsize">{{system.fixedsize}}</td>
+	<td class="field-surplussize">{{system.surplussize}}</td>
+</tr>
+{% endfor %}
+{% include 'partition_state/pagination.html' %}
+
+
+    </tbody>
+</table>
+</div>
+
+
+
+      </form>
+    </div>
+  </div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+</body></html>

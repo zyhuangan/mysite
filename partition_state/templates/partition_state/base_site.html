@@ -1,0 +1,44 @@
+{% extends "partition_state/base.html" %}
+{% block stylesheet_rtl %}/static/partition_state/css/dashboard.css{% endblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django vivo') }}{% endblock %}
+
+{% block branding %}
+<h1><a href="{% url 'partition_state:index' %}">Vivo</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+{% block bodyclass %} dashboard{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block coltype %}colMS{% endblock %}
+{% block content_title %}<h1>Vivo administration</h1>{% endblock %}
+{% block content %}
+<div id="content-main">
+        <div class="app-partition_state module">
+        <table>
+        <caption>
+            <a href="{% url 'partition_state:index' %}">Partition_State</a>
+        </caption>
+            <tbody><tr class="model-t_apk_system_config">
+                <th scope="row"><a href="{% url 'partition_state:show_check_partition' %}">check_partition</a></th>
+                <td><a href="{% url 'partition_state:index' %}">Add</a></td>
+                <td><a href="{% url 'partition_state:index' %}">Change</a></td>
+            </tr></tbody>
+            <tbody><tr class="model-t_apk_system_config">
+                <th scope="row"><a href="{% url 'partition_state:show_newest_version_partition' %}">newest_version_partition</a></th>
+                <td><a href="{% url 'partition_state:index' %}">Add</a></td>
+                <td><a href="{% url 'partition_state:index' %}">Change</a></td>
+            </tr></tbody>
+			<tbody><tr class="model-t_apk_system_config">
+                <th scope="row"><a href="{% url 'partition_state:show_detail_partition' %}">detail_partition</a></th>
+                <td><a href="{% url 'partition_state:index' %}">Add</a></td>
+                <td><a href="{% url 'partition_state:index' %}">Change</a></td>
+            </tr></tbody>
+            <tbody><tr class="model-t_apk_system_config">
+                <th scope="row"><a href="{% url 'partition_state:show_compare_partition' %}">compare_partition</a></th>
+                <td><a href="{% url 'partition_state:index' %}">Add</a></td>
+                <td><a href="{% url 'partition_state:index' %}">Change</a></td>
+            </tr></tbody>
+		</table>
+        </div>
+</div>
+{% endblock %}

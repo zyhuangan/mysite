@@ -1,0 +1,202 @@
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>show_compare_partition | Django vivo</title>
+<link rel="stylesheet" type="text/css" href="/static/partition_state/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/partition_state/css/changelists.css">
+
+<script type="text/javascript" src="/static/partition_state/css/core.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.init.js"></script>
+<script type="text/javascript" src="/static/partition_state/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/actions.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/urlify.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/prepopulate.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/xregexp.min.js"></script>
+<script type="text/javascript" src="/static/partition_state/js/level_linkage.js"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-partition_state model-t_apk_system_config change-list" data-admin-utc-offset="28800">
+<!-- Container -->
+<div id="container">
+   
+<!-- Header -->
+<div id="header">
+    <div id="branding">       
+        <h1 id="site-name"><a href="http://192.168.2.63:8099/admin/">Django administration</a></h1>
+    </div>
+    <div id="user-tools">
+    Welcome,<strong>compiler</strong>.<a href="http://192.168.2.63:8099/">View site</a> /
+    <a href="http://192.168.2.63:8099/admin/password_change/">Change password</a> /
+    <a href="http://192.168.2.63:8099/admin/logout/">Log out</a>
+    </div>
+</div>
+<!-- END Header -->
+    
+<div class="breadcrumbs">
+    <a href="{% url 'partition_state:index' %}">Home</a>
+    › <a href="{% url 'partition_state:index' %}">Partition_State</a>
+    › T_apk_system_configs
+</div>
+
+<!-- Content -->
+<div id="content" class="flex">
+    <h1>show_compare_partition</h1>
+<div id="content-main">
+    
+<ul class="object-tools">
+<li>
+<!--<a href="{% url 'partition_state:show_detail_partition' %}" class="addlink">-->
+<a href="{% url 'partition_state:compare_partition' platfrom1=MSM8976 project1=PD1515BA version1=1.18.1 platfrom2=MSM8976 project2=PD1515BA version2=1.18.2 }" class="addlink">
+DOWNLOAD
+</a>
+</li>
+</ul>
+      
+<div class="module filtered" id="changelist">
+
+<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+<div id="changelist-filter">
+    <h2>Filter</h2>
+    <h3> By project </h3>
+    <ul>
+    <li class="selected">
+    <a href="{% url 'partition_state:show_check_partition'%}">All</a></li>
+	{% for project_name in project_names_list %}
+    <li>
+    <a href="{% url 'partition_state:get_check_partition' project_name %}">{{ project_name }}</a>
+    </li>
+	{% endfor %}
+    </ul>
+</div>
+        
+    <form id="changelist-form">
+    <form action="/partition_state/show_detail_partition/" method="get">
+		<form>
+        <label>平台: 
+            <select id="platform" name="platform_name" style="width:200px;" onchange="Get_Next_Place('platform','Get_project')" >
+                <option id="Not_data1" value="" selected="selected">Platform</option>
+                {% for platform_name in platform_list%}
+                <option id="{{platform_name}}" value="{{platform_name}}" name="platform_name" >{{platform_name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>项目: 
+            <select id="project" name="project_name" style="width:200px;" onchange="Get_Next_Place('project','Get_version')">
+                <option id="Not_data2" name="project_name">Project</option>
+            </select>
+        </label>
+        <label>版本: 
+            <select id="version" name="version_name" style="width:200px;">
+                <option id="Not_data3" name="version_name" >Version</option> 
+            </select>
+        </label>
+		</form>
+		<form>
+		<br/>
+		<label>平台: 
+            <select id="platform" name="platform_name" style="width:200px;" onchange="Get_Next_Place('platform','Get_project')" >
+                <option id="Not_data1" value="" selected="selected">Platform</option>
+                {% for platform_name in platform_list%}
+                <option id="{{platform_name}}" value="{{platform_name}}" name="platform_name" >{{platform_name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>项目: 
+            <select id="project" name="project_name" style="width:200px;" onchange="Get_Next_Place('project','Get_version')">
+                <option id="Not_data2" name="project_name">Project</option>
+            </select>
+        </label>
+        <label>版本: 
+            <select id="version" name="version_name" style="width:200px;">
+                <option id="Not_data3" name="version_name" >Version</option> 
+            </select>
+        </label>
+		</form>
+        <button type="submit" class="button" title="Run the selected action" style="width:50px;">Go</button>
+    </form>
+
+<div class="results">
+    <table id="result_list">
+    <thead>
+    <tr>
+    <th scope="col" class="action-checkbox-column">
+        <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-project">
+        <div class="text"><a>软件版本</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-version">
+        <div class="text"><a>{{title_list.0}}</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-version">
+        <div class="text"><a>{{title_list.1}}</a></div>
+        <div class="clear"></div>
+    </th>
+    </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+
+
+<tr class="{% cycle 'row1' 'row2' %}">
+	<td class="action-checkbox">
+		<input class="action-select" name="_selected_action" type="checkbox" value="14413">
+	</td>
+	<th class="field-project">
+		<a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/14413/change/">system</a>
+	</th>
+	<td class="field-version">{{system.0}}</td>
+    <td class="field-version">{{system.1}}</td>
+</tr>
+
+{%for key in info_dict.items %}
+<tr class="row1">
+	<td class="action-checkbox">
+		<input class="action-select" name="_selected_action" type="checkbox" value="14414">
+	</td>
+	<th class="field-project">
+		<a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/14413/change/">{{key.0}}</a>
+	</th>
+	<td class="field-version">{{key.1.0}}</td>
+    <td class="field-version">{{key.1.1}}</td>
+</tr>
+{%endfor%}
+
+    </tbody>
+</table>
+</div>
+
+
+
+</form>
+    </div>
+  </div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+</body></html>

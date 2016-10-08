@@ -1,0 +1,165 @@
+{% extends "partition_state/base.html" %}
+{% load paginate_tags %}
+
+{% block title %}show_check_partition | Django vivo{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+{% block stylesheet_rtl %}/static/partition_state/css/changelists.css{% endblock %}
+{% block extrastyle %}
+<script type="text/javascript" src="./Select t_apk_system_config to change _ Django site admin_files/saved_resource"></script>
+<script type="text/javascript" src="/static/partition_state/css/core.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/jquery.init.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/actions.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/urlify.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/prepopulate.js"></script>
+<script type="text/javascript" src="/static/partition_state/css/xregexp.min.js"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+{% endblock %}
+
+{% block bodyclass %}show_check_partition{% endblock %}
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'partition_state:index' %}">Django administration</a></h1>
+{% endblock %}
+{% block usertools %}
+<div id="user-tools">
+    Welcome,<strong>compiler</strong>.<a href="{% url 'partition_state:index' %}">View site</a> /
+    <a href="{% url 'partition_state:index' %}">Change password</a> /
+    <a href="{% url 'partition_state:index' %}">Log out</a>
+</div>
+{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'partition_state:index' %}">Home</a>
+    › <a href="{% url 'partition_state:index' %}">Partition_State</a>
+    › T_apk_system_configs
+</div>
+{% endblock %}
+{% block coltype %}flex{% endblock %}
+{% block content_title %}<h1>show_check_partition</h1>{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    
+<ul class="object-tools">
+<li>
+<a href="{% url 'partition_state:index' %}" class="download">
+DOWNLOAD
+</a>
+</li>
+</ul>
+      
+<div class="module filtered" id="changelist">
+    <div id="toolbar"><form id="changelist-search" method="get">
+        <div><!-- DIV needed for valid HTML -->
+        <label for="searchbar"><img src="/static/partition_state/img/search.svg" alt="Search"></label>
+        <input type="text" size="40" name="q" value="" id="searchbar">
+        <input type="submit" value="Search">
+        </div>
+    </form></div>
+
+<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+    <div id="changelist-filter">
+    <h2>Filter</h2>
+    <h3> By project </h3>
+    <ul>
+    <li class="selected">
+    <a href="{% url 'partition_state:index' %}">All</a></li>
+
+	{% for project_name in project_names_list %}
+    <li>
+    <a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?project={{ project_name }}">{{ project_name }}</a></li>
+	{% endfor %}
+
+    </ul>
+    </div>
+        
+    <form id="changelist-form" method="post" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="2FDWekqo1AF2iemKewfVH34C7ryP058M">
+          
+    <div class="actions">
+    <label>Action: <select name="action">
+        <option value="" selected="selected">---------</option>
+        <option value="delete_selected">Delete selected t_apk_system_configs</option>
+    </select></label>
+    <input class="select-across" name="select_across" type="hidden" value="0">
+    <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+    
+    <script type="text/javascript">var _actions_icnt="100";</script>
+        <span class="action-counter" style="display: inline;">0 of 100 selected</span>
+        <span class="all">All 3928 selected</span>
+        <span class="question">
+            <a href="javascript:;" title="Click here to select the objects across all pages">Select all 3928 t_apk_system_configs</a>
+        </span>
+        <span class="clear"><a href="javascript:;">Clear selection</a></span>
+
+</div>
+
+          
+
+
+<div class="results">
+    <table id="result_list">
+    <thead>
+    <tr>
+    <th scope="col" class="action-checkbox-column">
+        <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-project">
+        <div class="text"><a href="{% url 'partition_state:index' %}">Project</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-version">
+        <div class="text"><a href="{% url 'partition_state:index' %}">Version</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-systemsize">
+        <div class="text"><a href="{% url 'partition_state:index' %}">Systemsize</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-fixedsize">
+        <div class="text"><a href="{% url 'partition_state:index' %}">Fixedsize</a></div>
+        <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-surplussize">
+        <div class="text"><a href="{% url 'partition_state:index' %}">Surplussize</a></div>
+        <div class="clear"></div>
+    </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% paginate system_list 50 %}
+{% for system in system_list %}
+<tr class="{% cycle 'row1' 'row2' %}">
+	<td class="action-checkbox">
+		<input class="action-select" name="_selected_action" type="checkbox" value="{{system.id}}">
+	</td>
+	<th class="field-project">
+		<a href="{% url 'partition_state:index' %}">{{system.project}}</a>
+	</th>
+	<td class="field-version">{{system.version}}</td>
+	<td class="field-systemsize">{{system.systemsize}}</td>
+	<td class="field-fixedsize">{{system.fixedsize}}</td>
+	<td class="field-surplussize">{{system.surplussize}}</td>
+</tr>
+{% endfor %}
+{% include 'partition_state/pagination.html' %}
+
+
+    </tbody>
+</table>
+</div>
+
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
