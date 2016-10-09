@@ -207,30 +207,50 @@ function show_compare_partition is used for to display the compare detal informa
 of project version in show_compare_partition html.
 '''  
 def show_compare_partition(request):
-    platform_list = common.get_all_platform(COUNT_SIZE_PATH)
-    project_list = common.get_all_project(COUNT_SIZE_PATH)
-    version_obj = t_apk_system_config.objects.filter(project='PD1515BA')
-    count_size_full_path1="/mnt/release_nfs/Count_Size/count_size/MSM8976IMG/PD1515BA/PD1515BA_A_1.18.1_count_size.txt"
-    count_size_full_path2="/mnt/release_nfs/Count_Size/count_size/MSM8976IMG/PD1515BA/PD1515BA_A_1.18.2_count_size.txt"
-    title_list,sum_dict,info_dict = common.compare_details_info(count_size_full_path1,count_size_full_path2)
-    print "title_list=%s"%(title_list)
-    print "sum_dict=%s"%(sum_dict)
-    print "info_dict=%s"%(info_dict)
-    system_list = t_apk_system_config.objects.order_by('project')
+    print "request.method=%s"%(request.method)
     project_names_list=[]
+    platform_list = common.get_all_platform(COUNT_SIZE_PATH)
+    system_list = t_apk_system_config.objects.order_by('project')
     for i in system_list:
         project_name=i.project
         if project_name not in project_names_list:
             project_names_list.append(project_name)
-    context={
+    project_list = common.get_all_project(COUNT_SIZE_PATH)
+    if request.method == 'GET':
+        print "1111111111"
+        platform_name1 = request.GET.get('platform_name1', None)
+        project_name1 = request.GET.get('project_name1', None)
+        version_name1 = request.GET.get('version_name1', None)
+        platform_name2 = request.GET.get('platform_name2', None)
+        project_name2 = request.GET.get('project_name2', None)
+        version_name2 = request.GET.get('version_name2', None)
+        
+        count_size_full_path1=COUNT_SIZE_PATH + str(platform_name1) + '/' + str(project_name1) + '/' + str(version_name1) + '_count_size.txt'
+        count_size_full_path2=COUNT_SIZE_PATH + str(platform_name2) + '/' + str(project_name2) + '/' + str(version_name2) + '_count_size.txt'
+        print "count_size_full_path1=%s"%(count_size_full_path1)
+        print "count_size_full_path2=%s"%(count_size_full_path2)
+        if os.path.exists(count_size_full_path1) and os.path.exists(count_size_full_path2):
+             title_list,sum_dict,info_dict = common.compare_details_info(count_size_full_path1,count_size_full_path2)
+        else:
+            title_list=[]
+            sum_dict={}
+            info_dict={}
+        #version_obj = t_apk_system_config.objects.filter(project='PD1515BA')
+        context={
             'title_list':title_list,
             'info_dict':info_dict,
             'project_names_list':project_names_list,
             'platform_list':platform_list,
             'project_list':project_list,
-            'version_obj':version_obj,
             }
-    context.update(sum_dict)
+        context.update(sum_dict)
+    else:
+        context={
+            'project_names_list':project_names_list,
+            'platform_list':platform_list,
+            'project_list':project_list,
+            }
+    print "context=%s"%(context)
     template = loader.get_template('partition_state/show_compare_partition.html')
     return HttpResponse(template.render(context,request))
     

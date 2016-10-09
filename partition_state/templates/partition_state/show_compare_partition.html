@@ -82,7 +82,7 @@ DOWNLOAD
 </div>
         
     <form id="changelist-form">
-    <form action="/partition_state/show_detail_partition/" method="get">
+    <form action="/partition_state/show_compare_partition/" method="get">
 		<form>
         <label>平台: 
             <select id="platform1" name="platform_name1" style="width:200px;" onchange="Get_Next_Place('platform1','Get_project', '1')" >
@@ -102,9 +102,6 @@ DOWNLOAD
                 <option id="Not_version1" name="version_name1" >Version</option> 
             </select>
         </label>
-		</form>
-
-		<form>
 		<br/>
 		<label>平台: 
             <select id="platform2" name="platform_name2" style="width:200px;" onchange="Get_Next_Place('platform2','Get_project', '2')" >
@@ -124,9 +121,8 @@ DOWNLOAD
                 <option id="Not_version2" name="version_name2" >Version</option> 
             </select>
         </label>
-		</form>
-
         <button type="submit" class="button" title="Run the selected action" style="width:50px;">Go</button>
+		</form>
     </form>
 
 <div class="results">
@@ -155,7 +151,7 @@ DOWNLOAD
     
     <tbody>
 
-
+{% if system %}
 <tr class="{% cycle 'row1' 'row2' %}">
 	<td class="action-checkbox">
 		<input class="action-select" name="_selected_action" type="checkbox" value="14413">
@@ -166,6 +162,7 @@ DOWNLOAD
 	<td class="field-version">{{system.0}}</td>
     <td class="field-version">{{system.1}}</td>
 </tr>
+{%endif%}
 
 {%for key in info_dict.items %}
 <tr class="row1">
