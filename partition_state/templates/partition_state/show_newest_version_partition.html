@@ -74,13 +74,14 @@ DOWNLOAD
     <h3> By project </h3>
     <ul>
     <li class="selected">
-    <a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?">All</a></li>
+    <a href="{% url 'partition_state:show_check_partition'%}">All</a></li>
 
 	{% for project_name in project_names_list %}
     <li>
-    <a href="http://192.168.2.63:8099/admin/partition_state/t_apk_system_config/?project={{ project_name }}">{{ project_name }}</a></li>
+    <a href="{% url 'partition_state:get_check_partition' project_name %}">{{ project_name }}</a>
+    </li>
 	{% endfor %}
-
+    
     </ul>
     </div>
         
