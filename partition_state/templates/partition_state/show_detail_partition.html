@@ -84,21 +84,21 @@ DOWNLOAD
     <form id="changelist-form">
     <form action="/partition_state/show_detail_partition/" method="get">      
         <label>平台: 
-            <select id="platform" name="platform_name" style="width:200px;" onchange="Get_Next_Place('platform','Get_project')" >
-                <option id="Not_data1" value="" selected="selected">Platform</option>
-                {% for platform_name in platform_list%}
-                <option id="{{platform_name}}" value="{{platform_name}}" name="platform_name" >{{platform_name}}</option>
+            <select id="platform1" name="platform_name" style="width:200px;" onchange="Get_Next_Place('platform1','Get_project', '1')" >
+                <option id="Not_platform1" value="" selected="selected">Platform</option>
+                {% for platform_name1 in platform_list%}
+                <option id="{{platform_name1}}" value="{{platform_name1}}" name="platform_name" >{{platform_name1}}</option>
                 {% endfor %}
             </select>
         </label>
         <label>项目: 
-            <select id="project" name="project_name" style="width:200px;" onchange="Get_Next_Place('project','Get_version')">
-                <option id="Not_data2" name="project_name">Project</option>
+            <select id="project1" name="project_name" style="width:200px;" onchange="Get_Next_Place('project1','Get_version', '1')">
+                <option id="Not_project1" name="project_name">Project</option>
             </select>
         </label>
         <label>版本: 
-            <select id="version" name="version_name" style="width:200px;">
-                <option id="Not_data3" name="version_name" >Version</option> 
+            <select id="version1" name="version_name" style="width:200px;">
+                <option id="Not_version1" name="version_name" >Version</option> 
             </select>
         </label>
         <button type="submit" class="button" title="Run the selected action" style="width:50px;">Go</button>
